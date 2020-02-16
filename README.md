@@ -35,3 +35,5 @@ Shape buildShape(Curve c, int threshold) {
 La rotación se le aplica a una curva rotando cada uno de sus puntos, multiplicando el punto por una matriz de rotación en el eje y.
 
 ![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
+
+$e^{i \pi} = -1$
