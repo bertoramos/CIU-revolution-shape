@@ -37,3 +37,5 @@ La rotación se le aplica a una curva rotando cada uno de sus puntos, multiplica
 ![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
 $e^{i \pi} = -1$
+
+<img src="https://render.githubusercontent.com/render/math?math=e^{i +\pi} =x+1">
