@@ -152,3 +152,8 @@ public PShape createMesh() {
   return pshape;
 }
 ```
+
+### Referencias
+
+ * __Imagen enter key__ : https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Oxygen480-actions-key-enter.svg/1200px-Oxygen480-actions-key-enter.svg.png
+ * __Látex en imagen__ :<https://latex.codecogs.com>
