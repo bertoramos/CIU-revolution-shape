@@ -10,15 +10,15 @@ En esta práctica hemos desarrollado un editor que recoge puntos de un perfil de
 #### Uso de la Interfaz
 
 - En *vista diseño*:
-  - &#8617; __*Enter*__ : cambiar a vista diseño.
+  - __&#8617;__ __*Enter*__ : cambiar a vista diseño.
   - &#11014;&#11015; __*Flechas superiores e inferiores*__ :  cambiar el valor de precisión (número de rotaciones del perfil) en paso 1.
   - &#11013;&#10145; __*Flechas izquierda y derecha*__ : cambiar el valor de precisión en paso 50.
   - &#128432; __*Click izquierdo*__ : indicar puntos (uno a uno) del perfil en modo dibujo.
   - &#128432; __*Click derecho*__ : eliminar último punto dibujado.
 - En *vista 3D*:
-  - &#8617; __*Enter*__ : cambiar a vista dibujo.
+  - __&#8617;__ __*Enter*__ : cambiar a vista dibujo.
   - &#11014;&#11015; __*Flechas superiores e inferiores*__ : girar el objeto en el eje X.
-  - A/S __*Teclas A y S*__: girar el objeto en el eje Y.
+  - __&#9398;/&#9442;__ __*Teclas A y S*__: girar el objeto en el eje Y.
   - &#11013;&#10145; __*Flechas izquierda y derecha*__ : girar el objeto en el eje Z.
   - &#128432; __*Desplazar puntero*__: desplazar el objeto.
 
