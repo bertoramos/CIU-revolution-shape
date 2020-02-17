@@ -11,6 +11,10 @@ void startDraw() {
   textSize(20); 
   fill(255);
   text("Change to 3D View", 60, 30, 0);
+  
+  alpha = 0;
+  beta = 0;
+  gamma = 0;
 }
 
 void newPoint(float mousex, float mousey) {
