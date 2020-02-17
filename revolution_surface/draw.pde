@@ -3,12 +3,13 @@ Curve currentCurve;
 
 void startDraw() {
   currentCurve = new Curve();
-  background(255);
+  background(0);
+  stroke(255);
   line(width/2, 0, width/2, height);
   
   image(enter, 10, 5, 40, 40);
   textSize(20); 
-  fill(0);
+  fill(255);
   text("Change to 3D View", 60, 30, 0);
 }
 
@@ -16,6 +17,7 @@ void newPoint(float mousex, float mousey) {
   Point new_point = new Point(mousex, mousey, 0);
   
   // Vértice de perfil
+  stroke(255);
   strokeWeight(3);
   PShape ppoint = createShape(POINT, new_point.x, new_point.y);
   shape(ppoint);

@@ -71,14 +71,14 @@ class Shape {
     
     // Zig-zag
     for(int i = 0; i < shape.size()-1; i++) {
-      if(i % 2 == 0) { // 
+      if(i % 2 == 0) { // De arriba hacia abajo
         for(int j = 0; j < shape.get(i).nVertex(); j++) {
           Point p0 = shape.get(i).get(j);
           Point p1 = shape.get(i+1).get(j);
           pshape.vertex(p0.x, p0.y, p0.z);
           pshape.vertex(p1.x, p1.y, p1.z);
         }
-      } else {
+      } else { // De abajo hacia arriba
         for(int j = shape.get(i).nVertex()-1; j >= 0; j--) {
           Point p0 = shape.get(i).get(j);
           Point p1 = shape.get(i+1).get(j);
@@ -88,16 +88,16 @@ class Shape {
       }
     }
     
-    // Ultimo con primero
+    // Ultimo perfil con el primero
     int i = shape.size()-1;
-    if(i % 2 == 0) { // 
+    if(i % 2 == 0) { // De arriba hacia abajo
       for(int j = 0; j < shape.get(i).nVertex(); j++) {
         Point p0 = shape.get(i).get(j);
         Point p1 = shape.get(0).get(j);
         pshape.vertex(p0.x, p0.y, p0.z);
         pshape.vertex(p1.x, p1.y, p1.z);
       }
-    } else {
+    } else { // De abajo hacia arriba
       for(int j = shape.get(i).nVertex()-1; j >= 0; j--) {
         Point p0 = shape.get(i).get(j);
         Point p1 = shape.get(0).get(j);

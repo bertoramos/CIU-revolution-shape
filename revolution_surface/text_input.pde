@@ -29,12 +29,12 @@ void updateText() {
     if(umbral > max) umbral = max-1;
   }
   
-  stroke(255);
-  fill(255);
-  float alto = 100;
-  rect(0, height-alto, 150, alto);
   stroke(0);
   fill(0);
+  float alto = 100;
+  rect(0, height-alto, 150, alto);
+  stroke(255);
+  fill(255);
   textSize(txtSize/2);
   text(" [-50 ◄ ► +50]\n [+1 ▲ ▼ -1]", xloc, yloc-40);
   textSize(txtSize);

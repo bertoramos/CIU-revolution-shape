@@ -4,6 +4,12 @@ PImage enter;
 boolean drawing;
 PShape shape;
 
+
+// ***** TEMP *****
+//import gifAnimation.*;
+//GifMaker gif;
+// ***** TEMP *****
+
 void setup() {
   size(600, 600, P3D);
   enter = loadImage("enter.svg.png");
@@ -11,6 +17,12 @@ void setup() {
   drawing = true;
   startDraw();
   textInput();
+  
+  
+  // ***** TEMP *****
+  //gif = new GifMaker(this, "out.gif");
+  //gif.setRepeat(0);
+  // ***** TEMP *****
 }
 
 void keyPressed() {
@@ -28,6 +40,9 @@ void keyPressed() {
     updateText();
   }
   
+  // ***** TEMP *****
+  //if(keyCode == BACKSPACE) gif.finish();
+  // ***** TEMP *****
 }
 
 void mousePressed() {
@@ -37,20 +52,23 @@ void mousePressed() {
   }
 }
 
-
 final String drawMessage = "Press enter to start drawing";
 final String showMessage = "Press enter to show 3D shape";
 
 void draw() {
   if(!drawing) {
-    background(255);
+    background(0);
     translate(mouseX, mouseY);
     shape(shape);
     
     translate(-mouseX, -mouseY);
     image(enter, 10, 5, 40, 40);
     textSize(20); 
-    fill(0);
+    fill(255);
     text("Change to Draw View", 60, 30, 0);
   }
+  
+  // ***** TEMP *****
+  //gif.addFrame();
+  // ***** TEMP *****
 }
