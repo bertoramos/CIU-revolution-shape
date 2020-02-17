@@ -6,8 +6,8 @@ PShape shape;
 
 
 // ***** TEMP *****
-import gifAnimation.*;
-GifMaker gif;
+//import gifAnimation.*;
+//GifMaker gif;
 // ***** TEMP *****
 
 float alpha = 0;
@@ -23,15 +23,14 @@ void setup() {
   textInput();
   
   // ***** TEMP *****
-  gif = new GifMaker(this, "out.gif");
-  gif.setRepeat(0);
+  //gif = new GifMaker(this, "out.gif");
+  //gif.setRepeat(0);
   // ***** TEMP *****
 }
 
 void keyPressed() {
   if(keyCode == '\n' && !drawing) { // Redraw
     // clear all
-    //translate(-mouseX, -mouseY); // reset translation
     drawing = true;
     startDraw();
   } else if(keyCode == '\n' && drawing) { // End drawing
@@ -53,14 +52,14 @@ void keyPressed() {
   }
   
   // ***** TEMP *****
-  if(keyCode == BACKSPACE) gif.finish();
+  //if(keyCode == BACKSPACE) gif.finish();
   // ***** TEMP *****
 }
 
-void mousePressed() {
+void mouseClicked() {
   if(drawing) {
-    translate(width/2, height/2);
-    newPoint(mouseX - (width/2), mouseY - (height/2));
+    if (mouseButton == LEFT) currentCurve.addPoint(new Point(mouseX - (width/2), mouseY - (height/2), 0));
+    if (mouseButton == RIGHT) currentCurve.removeLastVertex();
   }
 }
 
@@ -90,9 +89,17 @@ void draw() {
     textSize(20); 
     fill(255);
     text("Change to Draw View", 60, 30, 0);
+  } else {
+    // Dibujar canvas de dibujo
+    drawCanvas();
+    // Dibujar valor de precision actual
+    drawAccuracyValue();
+    // Dibujar curva
+    translate(width/2, height/2);
+    currentCurve.draw();
   }
   
   // ***** TEMP *****
-  gif.addFrame();
+  //gif.addFrame();
   // ***** TEMP *****
 }

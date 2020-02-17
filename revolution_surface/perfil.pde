@@ -26,8 +26,8 @@ class Curve {
     points = new ArrayList<Point>();
   }
   
-  public Point getLastVertex() {
-    return points.get(points.size()-1);
+  public void removeLastVertex() {
+    if(points.size() > 0) points.remove(points.size()-1);
   }
   
   public void addPoint(Point p) {
@@ -48,6 +48,24 @@ class Curve {
       perfil.addPoint(p1.rotarEnY(alpha));
     }
     return perfil;
+  }
+  
+  public void draw() {
+    for(int i = 0; i < this.points.size(); i++) {
+      stroke(255);
+      strokeWeight(3);
+      PShape ppoint = createShape(POINT, points.get(i).x, points.get(i).y);
+      shape(ppoint);
+    }
+    
+    strokeWeight(1);
+    for(int i = 0; i < this.points.size()-1; i++) {
+      Point p1 = this.get(i);
+      Point p2 = this.get(i+1);
+      PShape path = createShape(LINE, p1.x, p1.y, p2.x, p2.y);
+      shape(path);
+    }
+    
   }
   
 }

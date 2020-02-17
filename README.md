@@ -5,6 +5,8 @@
 
 <center><img src="export.gif" width="400" height="400" alt="Ventana de programa (GIF)"/></center>
 
+En esta práctica hemos desarrollado un editor que recoge puntos de un perfil de un objeto sólido que se formará al hacer rotar dicho perfil sobre un eje.
+
 #### Uso de la Interfaz
 
 - En *vista diseño*:
@@ -12,6 +14,7 @@
   - &#11014;&#11015; __*Flechas superiores e inferiores*__ :  cambiar el valor de precisión (número de rotaciones del perfil) en paso 1.
   - &#11013;&#10145; __*Flechas izquierda y derecha*__ : cambiar el valor de precisión en paso 50.
   - &#128432; __*Click izquierdo*__ : indicar puntos (uno a uno) del perfil en modo dibujo.
+  - &#128432; __*Click derecho*__ : eliminar último punto dibujado.
 - En *vista 3D*:
   - &#8617; __*Enter*__ : cambiar a vista dibujo.
   - &#11014;&#11015; __*Flechas superiores e inferiores*__ : girar el objeto en el eje X.
@@ -19,31 +22,61 @@
   - &#11013;&#10145; __*Flechas izquierda y derecha*__ : girar el objeto en el eje Z.
   - &#128432; __*Desplazar puntero*__: desplazar el objeto.
 
-En esta práctica hemos desarrollado un editor que recoge puntos de un perfil de un objeto sólido que se formará al hacer rotar dicho perfil sobre un eje.
-
-#### Interfaz
-
-Existen dos modos de vista: el modo edición, donde podemos diseñar un perfil; y el modo vista 3D, donde visualizar el sólido generado a partir del perfil dibujado. Para cambiar de modo se utiliza la tecla *Enter*.
-
-Los puntos los indicamos con el ratón cuando estamos en el modo dibujo. Para seleccionar la precisión de la figura 3D (el número de veces que se rota el perfil) seleccionamos con las flechas un valor entre 1 y 500. Una vez tengamos nuestro perfil, generamos el sólido pulsando en la tecla *enter*.
-
 #### Diseño del perfil y creación de la figura 3D.
 
-Cada vez que el usuario pulsa con el ratón en el modo dibujo, se selecciona el punto en la pantalla y se almacena. Adicionalmente, dibujamos en pantalla la línea que une el punto nuevo con el último dibujado.
+Cada vez que el usuario pulsa con el ratón (en el modo dibujo), se selecciona el punto en la pantalla y se almacena, trasladándolo al centro de la pantalla: (x - width/2, y - height/2). Para eliminar el último punto dibujado, simplemente lo eliminamos de la curva que se está dibujando.
 
 ```java
-// Vértice de perfil
-strokeWeight(3);
-PShape ppoint = createShape(POINT, new_point.x, new_point.y);
-shape(ppoint);
-strokeWeight(1);
-
-// Linea entre ultimo vertice y nuevo vertice
-if(currentCurve.nVertex() > 0) {
-  Point last = currentCurve.getLastVertex();
-  PShape path = createShape(LINE, last.x, last.y, new_point.x, new_point.y);
-  shape(path);
+void mousePressed() {
+  if(drawing) {
+    if (mouseButton == LEFT) newPoint(mouseX - (width/2), mouseY - (height/2));
+    if (mouseButton == RIGHT) currentCurve.removeLastVertex();
+  }
 }
+```
+
+Para mostrar al usuario la forma de la curva, actualizamos en la función draw la unión de los vértices.
+
+```java
+void draw() {
+  ...
+  if(drawing) {
+    ...
+  } else {
+    // Dibujar canvas de dibujo
+    drawCanvas();
+    // Dibujar valor de precision actual
+    drawAccuracyValue();
+    // Dibujar curva
+    translate(width/2, height/2);
+    currentCurve.draw();
+  }
+}
+
+...
+
+class Curve {
+  ...
+  // Dibujar curva
+  public void draw() {
+    for(int i = 0; i < this.points.size(); i++) {
+      stroke(255);
+      strokeWeight(3);
+      PShape ppoint = createShape(POINT, points.get(i).x, points.get(i).y);
+      shape(ppoint);
+    }
+
+    strokeWeight(1);
+    for(int i = 0; i < this.points.size()-1; i++) {
+      Point p1 = this.get(i);
+      Point p2 = this.get(i+1);
+      PShape path = createShape(LINE, p1.x, p1.y, p2.x, p2.y);
+      shape(path);
+    }
+  }
+  ...
+}
+
 ```
 
 Todos los puntos creados se almacenan en la clase *Curve*. Cuando el usuario pasa a modo vista 3D, se rota el perfil tantas veces como indique el valor de precisión actual, un ángulo de 2π/precisión. Todas las *Curve* generadas se almacenan para posteriormente dibujarlas.

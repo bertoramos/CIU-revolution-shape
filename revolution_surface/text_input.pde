@@ -29,10 +29,9 @@ void updateText() {
     if(umbral > max) umbral = max-1;
   }
   
-  stroke(0);
-  fill(0);
-  float alto = 100;
-  rect(0, height-alto, 150, alto);
+}
+
+void drawAccuracyValue() {
   stroke(255);
   fill(255);
   textSize(txtSize/2);
